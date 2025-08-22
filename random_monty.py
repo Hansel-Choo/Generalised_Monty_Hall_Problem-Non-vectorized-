@@ -21,7 +21,7 @@ def monty_hall(switching = True, n_games = 90000, num_doors = 3, num_doors_car =
         #Select the doors that the contestant initially had chosen
         door_choice = random.sample(list(door_options), num_doors_contestant)
         print(f"door_choice: {list(door_choice)}")
-        #Remaining doors that the host to select to reveal goats or cars
+        #Remaining doors that the host to select (now can be a mixture of cars and goats)
         remaining_doors = list(set(door_options) - set(door_choice))
         #Select the doors that the host will reveal 
         door_choice_host = random.sample(remaining_doors, nums_doors_host)
@@ -73,12 +73,7 @@ p = num_doors_contestant
 q = num_cars_won
 k = num_doors_host
 
-theoretical_win_by_remaining = math.comb(m , q) * math.comb( n - m , p - q) / math.comb( n , p)
-theoretical_win_by_switching = math.comb(m , q) * ( math.comb( n , p ) * math.comb( n - m - k , p - q) - math.comb( n - m , p - q) ) / ( math.comb( n, p ) * (math.comb( n - k , p ) - 1) )
-
-percentage_difference_remaining = (abs(wins_by_remaining - theoretical_win_by_remaining)) / theoretical_win_by_remaining * 100
-percentage_difference_switching = (abs(wins_by_switching - theoretical_win_by_switching)) / theoretical_win_by_switching * 100
-
+theoretical_win_by_remaining = math.comb(m , q) * math.comb( n - m , p - q) / math.comb( n , p) #Equals to theoretical probability of winning by switching
 
 print("--------------------Inputs--------------------")
 print(f"Total number of doors: {num_doors}")
@@ -90,3 +85,6 @@ print(f"Number of cars that MUST be won by the contestant: {num_cars_won}")
 print(f"--------------------RESULTS--------------------")
 print(f"Probability of winning by remaining: {wins_by_remaining}")
 print(f"Probability of winning by switching: {wins_by_switching}")
+print("--------------THEORETICAL RESULTS---------------")
+print(f" Probability of winning by remaining = Probability of winning by switching: {theoretical_win_by_remaining}")
+print("------------------------------------------------")
