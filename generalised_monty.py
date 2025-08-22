@@ -21,7 +21,7 @@ def monty_hall(switching = True, n_games = 90000, num_doors = 3, num_doors_car =
         #Select the doors that the contestant initially had chosen
         door_choice = random.sample(list(door_options), num_doors_contestant)
         print(f"door_choice: {list(door_choice)}")
-        #Remaining doors with goats that the host to select to reveal a goat
+        #Remaining doors with goats that the host to select to reveal goats
         remaining_goats = list(set(door_options) - set(door_correct) - set(door_choice))
         print(f"remaining_goats: {list(remaining_goats)}")
         #Select the doors that the host will reveal 
